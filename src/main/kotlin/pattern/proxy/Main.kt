@@ -1,4 +1,4 @@
-package proxy
+package pattern.proxy
 
 fun main(){
     val obj: BusinessObject = BusinessObject.create()

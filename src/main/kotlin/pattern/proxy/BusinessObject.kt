@@ -1,4 +1,4 @@
-package proxy
+package pattern.proxy
 
 interface BusinessObject {
 

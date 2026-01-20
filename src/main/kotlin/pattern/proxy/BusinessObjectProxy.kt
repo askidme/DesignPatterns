@@ -1,4 +1,4 @@
-package proxy
+package pattern.proxy
 
 class BusinessObjectProxy(private val target: BusinessObject): BusinessObject {
     override fun sayHi() {
