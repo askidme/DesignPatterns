@@ -111,6 +111,7 @@ class LinkedList(value: Int) {
     fun remove(index: Int): Node? {
         if (index < 0 || index >= length) return null
         if (index == 0) return removeFirst()
+        if (index == length - 1) return removeLast()
         val prev = get(index - 1)
         val temp = prev?.next
         prev?.next = temp?.next
@@ -124,7 +125,7 @@ class LinkedList(value: Int) {
         head = tail
         tail = temp
         var before: Node? = null
-        var after = temp?.next
+        var after: Node?
         for(i in 0 until length) {
             after = temp?.next
             temp?.next = before
