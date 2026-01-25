@@ -140,4 +140,23 @@ class DoublyLinkedList(value: Int) {
         length--
         return node
     }
+
+    fun checkPalindrome(): Boolean {
+        if(length <= 1) return true
+        val center = length / 2
+        var startNode = head
+        var endNode = tail
+        for(i in 0 .. center) {
+            if(head?.value != tail?.value) {
+                return false
+            }
+            head = head?.next
+            tail = tail?.prev
+        }
+        return true
+    }
+
+    fun reverse() {
+
+    }
 }

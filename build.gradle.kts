@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation("commons-logging:commons-logging:1.3.5")
+    testImplementation("org.assertj:assertj-core:3.25.3")
     testImplementation(kotlin("test"))
 }
 
