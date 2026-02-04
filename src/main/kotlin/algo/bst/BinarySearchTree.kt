@@ -38,7 +38,7 @@ class BinarySearchTree {
         while (temp != null) {
             temp = if (value < temp.value) {
                 temp.left
-            } else if(value > temp.value){
+            } else if (value > temp.value) {
                 temp.right
             } else {
                 return true;
@@ -46,4 +46,64 @@ class BinarySearchTree {
         }
         return false
     }
+
+    fun rContains(value: Int) = rContains(root, value)
+
+    private fun rContains(currentNode: Node?, value: Int): Boolean {
+        if (currentNode == null) return false
+        if (value == currentNode.value) return true
+
+        return if (value < currentNode.value) {
+            rContains(currentNode.left, value)
+        } else {
+            rContains(currentNode.right, value)
+        }
+    }
+
+    fun rInsert(value: Int) {
+        if (root == null) root = Node(value)
+        rInsert(root, value)
+    }
+
+    private fun rInsert(currentNode: Node?, value: Int): Node {
+        if (currentNode == null) return Node(value)
+
+        if (value < currentNode.value) {
+            currentNode.left = rInsert(currentNode.left, value)
+        } else if (value > currentNode.value) {
+            currentNode.right = rInsert(currentNode.right, value)
+        }
+        return currentNode
+    }
+
+    fun deleteNode(value: Int): Node? {
+        return deleteNode(root, value);
+    }
+
+    private fun deleteNode(currentNode: Node?, value: Int): Node? {
+        if (currentNode == null) return null
+
+        if (value < currentNode.value) {
+            currentNode.left = deleteNode(currentNode.left, value)
+        } else if (value > currentNode.value) {
+            currentNode.right = deleteNode(currentNode.right, value)
+        } else {
+            if (currentNode.left == null && currentNode.right == null) {
+                return null
+            }
+            if (currentNode.left == null) {
+                return currentNode.right
+            }
+            if (currentNode.right == null) {
+                return currentNode.left
+            }
+            val subTreeMin = minValue(currentNode.right)
+            currentNode.value = subTreeMin
+            currentNode.right = deleteNode(currentNode.right, subTreeMin)
+        }
+        return currentNode
+    }
+
+    fun minValue(currentNode: Node?): Int = generateSequence(currentNode) { it.left }.last().value
+
 }
