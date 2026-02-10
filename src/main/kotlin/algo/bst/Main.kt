@@ -8,7 +8,35 @@ fun main() {
 //    println("\n*************************************************\n")
 //    testRContains()
 //    testMinValue()
-    testDelete()
+//    testDelete()
+//    testBfs()
+    println("dfs pre order")
+    testDfsPreOrder()
+    println("dfs post order")
+    testDfsPostOrder()
+    println("dfs in order")
+    testDfsInOrder()
+
+}
+
+fun testDfsInOrder() {
+    val myBst = createSampleBST()
+    println(myBst.dfsInOrder())
+}
+
+fun testDfsPostOrder() {
+    val myBst = createSampleBST()
+    println(myBst.dfsPostOrder())
+}
+
+fun testDfsPreOrder() {
+    val myBst = createSampleBST()
+    println(myBst.dfsPreOrder())
+}
+
+fun testBfs(){
+    val myBst = createSampleBST()
+    println(myBst.bfs())
 }
 
 fun testDelete(){
@@ -29,14 +57,7 @@ fun testDelete(){
 }
 
 fun testMinValue() {
-    val myBst = BinarySearchTree()
-    myBst.insert(47)
-    myBst.insert(21)
-    myBst.insert(76)
-    myBst.insert(18)
-    myBst.insert(27)
-    myBst.insert(52)
-    myBst.insert(82)
+    val myBst = createSampleBST()
     println(myBst.minValue(myBst.root))
     println(myBst.minValue(myBst.root?.right))
 }
@@ -103,4 +124,16 @@ fun testRContains() {
     println("contains 82 = ${myBst.rContains(82)}")
     println("contains 27 = ${myBst.rContains(27)}")
 
+}
+
+private fun createSampleBST(): BinarySearchTree {
+    val myBst = BinarySearchTree()
+    myBst.insert(47)
+    myBst.insert(21)
+    myBst.insert(76)
+    myBst.insert(18)
+    myBst.insert(27)
+    myBst.insert(52)
+    myBst.insert(82)
+    return myBst
 }

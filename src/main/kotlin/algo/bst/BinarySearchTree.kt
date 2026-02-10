@@ -1,5 +1,7 @@
 package algo.bst
 
+import java.util.*
+
 class BinarySearchTree {
     var root: Node? = null
 
@@ -106,4 +108,77 @@ class BinarySearchTree {
 
     fun minValue(currentNode: Node?): Int = generateSequence(currentNode) { it.left }.last().value
 
+
+    fun bfs(): List<Int>{
+        var currentNode = root
+        var queue: Queue<Node> = LinkedList()
+        val result = ArrayList<Int>()
+        queue.add(currentNode)
+        while (!queue.isEmpty()) {
+            currentNode = queue.poll()
+            result.add(currentNode.value)
+            if(currentNode.left != null) {
+                queue.add(currentNode.left)
+            }
+            if(currentNode.right != null) {
+                queue.add(currentNode.right)
+            }
+        }
+
+        return result
+    }
+
+    fun dfsPreOrder(): List<Int> {
+        if (root == null) return ArrayList()
+        val result = ArrayList<Int>()
+        class Traverse {
+            constructor(currentNode: Node) {
+                result.add(currentNode.value)
+                if(currentNode.left != null) {
+                    Traverse(currentNode.left!!)
+                }
+                if(currentNode.right != null) {
+                    Traverse(currentNode.right!!)
+                }
+            }
+        }
+        Traverse(root!!)
+        return result
+    }
+
+    fun dfsPostOrder(): List<Int> {
+        if(root == null) return ArrayList()
+        val result = ArrayList<Int>()
+        class Traverse {
+            constructor(currentNode: Node) {
+                if(currentNode.left != null) {
+                    Traverse(currentNode.left!!)
+                }
+                if(currentNode.right != null) {
+                    Traverse(currentNode.right!!)
+                }
+                result.add(currentNode.value)
+            }
+        }
+        Traverse(root!!)
+        return result
+    }
+
+    fun dfsInOrder(): List<Int> {
+        if (root == null) return ArrayList()
+        val result = ArrayList<Int>()
+        class Traverse {
+            constructor(currentNode: Node) {
+                if(currentNode.left != null) {
+                    Traverse(currentNode.left!!)
+                }
+                result.add(currentNode.value)
+                if(currentNode.right != null) {
+                    Traverse(currentNode.right!!)
+                }
+            }
+        }
+        Traverse(root!!)
+        return result
+    }
 }
